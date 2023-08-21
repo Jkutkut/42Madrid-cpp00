@@ -6,7 +6,7 @@
 /*   By: jre-gonz <jre-gonz@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 08:45:29 by jre-gonz          #+#    #+#             */
-/*   Updated: 2023/08/21 18:13:40 by jre-gonz         ###   ########.fr       */
+/*   Updated: 2023/08/21 18:34:56 by jre-gonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ void PhoneBook::addContact(const Contact contact) {
 
 void PhoneBook::searchAndPrint(unsigned int index) {
 	if (index >= MAX_CONTACTS) {
-		std::cerr << "Invalid index. It must be a natural number between 0 and " << MAX_CONTACTS << std::endl;
+		std::cerr << "Invalid index. It must be a natural number between 0 and ";
+		std::cerr << this->getContactCount() << std::endl;
 		return;
 	}
 	this->contacts[index].print();
@@ -56,7 +57,7 @@ void PhoneBook::searchAndPrint(unsigned int index) {
 
 void PhoneBook::print() {
 	std::cout << "---------------------------------------------" << std::endl;
-	for (unsigned int i = 0; i < this->contactCount; i++) {
+	for (unsigned int i = 0; i < this->getContactCount(); i++) {
 		std::cout << "| " << i << " | ";
 		// TODO format name, login and number
 		std::cout << this->contacts[i].getFirstName() << " | ";
@@ -66,4 +67,11 @@ void PhoneBook::print() {
 		std::cout << this->contacts[i].getDarkestSecret() << " |" << std::endl;
 	}
 	std::cout << "---------------------------------------------" << std::endl;
+}
+
+unsigned int PhoneBook::getContactCount() const {
+	// min(this->contactCount, MAX_CONTACTS);
+	if (this->contactCount < MAX_CONTACTS)
+		return (this->contactCount);
+	return (MAX_CONTACTS);
 }

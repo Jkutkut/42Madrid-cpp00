@@ -6,7 +6,7 @@
 /*   By: jre-gonz <jre-gonz@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 19:55:29 by jre-gonz          #+#    #+#             */
-/*   Updated: 2023/08/21 18:07:24 by jre-gonz         ###   ########.fr       */
+/*   Updated: 2023/08/21 18:25:29 by jre-gonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,15 @@ int	main(void) {
 
 	printTitle();
 
+	phoneBook.addContact(Contact("John", "Doe", "jdoe", "123456789", "I'm John Doe"));
+	phoneBook.addContact(Contact("Jane", "Doe", "jadoe", "987654321", "I'm Jane Doe"));
+	phoneBook.addContact(Contact("John", "Smith", "jsmith", "123456789", "I'm John Smith"));
+	phoneBook.addContact(Contact("Jane", "Smith", "jasmith", "987654321", "I'm Jane Smith"));
+	phoneBook.addContact(Contact("John", "Jones", "jjones", "123456789", "I'm John Jones"));
+	phoneBook.addContact(Contact("Jane", "Jones", "jajones", "987654321", "I'm Jane Jones"));
+	phoneBook.addContact(Contact("John", "Williams", "jwilliams", "123456789", "I'm John Williams"));
+	phoneBook.addContact(Contact("Jane", "Williams", "jawilliams", "987654321", "I'm Jane Williams"));
+
 	while (running) {
 		switch (stocmd(tui.getString("> "))) {
 			case ADD:
@@ -89,9 +98,7 @@ int	main(void) {
 				// if no contacts, print error
 				phoneBook.print();
 				phoneBook.searchAndPrint((unsigned int) tui.getInt(
-					"Index: ",
-					0,
-					PhoneBook::MAX_CONTACTS - 1 // TODO use min(amount, max)
+					"Index: ", 0, phoneBook.getContactCount() - 1
 				));
 				break;
 			case EXIT:
