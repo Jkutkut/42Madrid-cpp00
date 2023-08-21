@@ -9,11 +9,17 @@ Contact::Contact(
 	std::string phoneNumber,
 	std::string darkestSecret
 ) {
+	#ifdef DEBUG
+	std::clog << "Contact constructor called" << std::endl;
+	#endif
 	this->_firstName = firstName;
 	this->_lastName = lastName;
 	this->_nickname = nickname;
 	this->_phoneNumber = phoneNumber;
 	this->_darkestSecret = darkestSecret;
+	#ifdef DEBUG
+	std::clog << "Contact constructor finished" << std::endl;
+	#endif
 }
 
 Contact::~Contact() {}

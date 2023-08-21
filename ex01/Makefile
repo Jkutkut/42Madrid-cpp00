@@ -6,6 +6,7 @@ BIN = bin
 NAME = phonebook
 
 SRCS =	main.cpp \
+		tools.cpp \
 		TUI.cpp \
 		Contact.cpp \
 		PhoneBook.cpp
@@ -13,6 +14,9 @@ SRCS =	main.cpp \
 OBJS = $(SRCS:%.cpp=${BIN}/%.o)
 
 all: $(NAME)
+
+debug: FLAGS += -D DEBUG
+debug: re
 
 $(NAME): $(OBJS)
 	@echo "Generating $@\c"

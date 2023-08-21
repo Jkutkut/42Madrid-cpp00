@@ -6,23 +6,29 @@
 /*   By: jre-gonz <jre-gonz@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 08:45:29 by jre-gonz          #+#    #+#             */
-/*   Updated: 2023/08/21 22:42:08 by jre-gonz         ###   ########.fr       */
+/*   Updated: 2023/08/21 23:31:22 by jre-gonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 
 PhoneBook::PhoneBook() {
+	#ifdef DEBUG
 	std::cout << "PhoneBook constructor called" << std::endl;
+	#endif
 	this->contactCount = 0;
 }
 
 PhoneBook::~PhoneBook() {
+	#ifdef DEBUG
 	std::cout << "PhoneBook destructor called" << std::endl;
+	#endif
 }
 
 PhoneBook::PhoneBook(const PhoneBook& obj) {
+	#ifdef DEBUG
 	std::cout << "PhoneBook copy constructor called" << std::endl;
+	#endif
 	this->contactCount = obj.contactCount;
 	for (unsigned int i = 0; i < MAX_CONTACTS; i++)
 		this->contacts[i] = obj.contacts[i];
@@ -40,9 +46,13 @@ PhoneBook& PhoneBook::operator=(const PhoneBook& obj) {
 void PhoneBook::addContact(const Contact contact) {
 	if (this->contactCount >= MAX_CONTACTS)
 		std::cout << "PhoneBook is full. Replacing oldest." << std::endl;
+	#ifdef DEBUG
 	std::clog << "Adding " << contact.getFirstName() << " " << contact.getLastName() << " to PhoneBook...";
+	#endif
 	this->contacts[this->contactCount % MAX_CONTACTS] = contact;
+	#ifdef DEBUG
 	std::clog << " [OK]" << std::endl;
+	#endif
 	this->contactCount++;
 }
 
@@ -67,17 +77,17 @@ void printField(std::string field) {
 
 void printHeader() {
 	std::cout << "|";
-	printField("index");
+	printField("INDEX");
 	std::cout << "|";
-	printField("first name");
+	printField("F. NAME");
 	std::cout << "|";
-	printField("last name");
+	printField("L. NAME");
 	std::cout << "|";
-	printField("nickname");
+	printField("NICKNAME");
 	std::cout << "|";
-	printField("phone number");
+	printField("PHONE");
 	std::cout << "|";
-	printField("darkest secret");
+	printField("D. SECRET");
 	std::cout << "|" << std::endl;
 }
 

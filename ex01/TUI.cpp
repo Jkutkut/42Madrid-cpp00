@@ -1,11 +1,15 @@
 #include "TUI.hpp"
 
 TUI::TUI() {
+	#ifdef DEBUG
 	std::clog << "TUI: creating instance" << std::endl;
+	#endif
 }
 
 TUI::~TUI() {
+	#ifdef DEBUG
 	std::clog << "TUI: instance destroyed" << std::endl;
+	#endif
 }
 
 TUI::TUI(const TUI & obj) { *this = obj; }
@@ -21,7 +25,9 @@ TUI& TUI::getInstance() {
 	if (TUI::instance == NULL) {
 		TUI::instance = new TUI();
 	}
+	#ifdef DEBUG
 	std::clog << "TUI: returning instance" << std::endl;
+	#endif
 	return *TUI::instance;
 }
 
@@ -85,12 +91,14 @@ static bool isSpanishPhone(std::string str) {
 	unsigned int	i = 0;
 	unsigned int	j = 0;
 
+	#ifdef DEBUG
+	std::clog << "TUI: isSpanishPhone(" << str << ")" << std::endl;
+	#endif
 	if (str.length() < 9)
 		return false;
 	if (str.compare(0, 3, "+34") == 0)
 		i += 3;
 	while (j < 9 && i < str.length()) {
-		std::clog << "isSpanishPhone: checking digit" << std::endl;
 		if (str.compare(i, 1, " ") == 0)
 			i++;
 		while (i < str.length() && isdigit(str[i++]))
@@ -104,8 +112,8 @@ std::string TUI::getSpanishPhone(std::string question) {
 	while (true) {
 		input = getString(question);
 		if (!isSpanishPhone(input)) {
-			std::cerr << "The response must be a valid Spanish phone number." << std::endl;
-			std::cerr << "  (\\+34)? ?\\d{3} ?\\d{3} ?\\d{3}" << std::endl;
+			std::cerr << "The response must be a valid Spanish phone number.";
+			std::cerr << " Regex: (\\+34)? ?\\d{3} ?\\d{3} ?\\d{3}" << std::endl;
 		}
 		else {
 			break;
