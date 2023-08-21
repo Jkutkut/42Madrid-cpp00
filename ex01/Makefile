@@ -8,7 +8,7 @@ NAME = phonebook
 SRCS =	main.cpp \
 		TUI.cpp \
 		Contact.cpp \
-		#Phonebook.cpp
+		PhoneBook.cpp
 
 OBJS = $(SRCS:%.cpp=${BIN}/%.o)
 

@@ -25,15 +25,6 @@ TUI& TUI::getInstance() {
 	return *TUI::instance;
 }
 
-// static bool hasAny(const std::string& set, char c) {
-// 	for (unsigned int i = 0; i < set.length(); i++) {
-// 		if (set[i] == c) {
-// 			return true;
-// 		}
-// 	}
-// 	return false;
-// }
-
 static std::string trim(std::string& str) {
 	unsigned int start = 0;
 	unsigned int end = str.length() - 1;
@@ -45,13 +36,6 @@ static std::string trim(std::string& str) {
 	}
 	return str.substr(start, end - start + 1);
 }
-
-/*
-
-		std::string getString(std::string question);
-		std::string getString(std::string question, std::string defaultValue);
-		std::string getString(std::string question, unsigned int minLength, unsigned int maxLength);
- */
 
 std::string TUI::getString(std::string question) {
 	std::string input;
@@ -69,6 +53,41 @@ std::string TUI::getString(std::string question, unsigned int minLength, unsigne
 		}
 		else if (input.length() > maxLength) {
 			std::cerr << "The response must be at most " << maxLength << " characters long." << std::endl;
+		}
+		else {
+			break;
+		}
+	}
+	return input;
+}
+
+// -------------- INT --------------
+
+int TUI::getInt(std::string question) {
+	int input = 0;
+	std::cout << question;
+	while (!(std::cin >> input)) {
+		std::cin.clear(); // clear the error flags
+		std::cin.ignore(__INT_MAX__, '\n'); // discard the row
+		std::cerr << "The response must be an integer." << std::endl;
+		std::cout << question;
+	}
+	return input;
+}
+
+int TUI::getInt(std::string question, int minValue) {
+	return getInt(question, minValue, __INT_MAX__);
+}
+
+int TUI::getInt(std::string question, int minValue, int maxValue) {
+	int input;
+	while (true) {
+		input = getInt(question);
+		if (input < minValue) {
+			std::cerr << "The response must be at least " << minValue << "." << std::endl;
+		}
+		else if (input > maxValue) {
+			std::cerr << "The response must be at most " << maxValue << "." << std::endl;
 		}
 		else {
 			break;
