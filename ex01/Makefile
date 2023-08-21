@@ -14,16 +14,13 @@ OBJS = $(SRCS:%.cpp=${BIN}/%.o)
 
 all: $(NAME)
 
-# TODO relink?
 $(NAME): $(OBJS)
 	@echo "Generating $@\c"
 	@$(CC) $(FLAGS) $(OBJS) -o $(NAME)
 	@echo " [\033[32mOK\033[0m]"
 
-${BIN}:
-	mkdir -p ${BIN}
-
-${BIN}/%.o: %.cpp ${BIN}
+${BIN}/%.o: %.cpp
+	@mkdir -p $(BIN)
 	@echo "[Compiling] $< -> $@\c"
 	@$(CC) $(FLAGS) -c $< -o $@
 	@echo " [\033[32mOK\033[0m]"
