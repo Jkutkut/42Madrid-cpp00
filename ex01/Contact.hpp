@@ -10,7 +10,7 @@ class Contact {
 		~Contact();
 		Contact(const Contact & obj);
 		Contact& operator=(const Contact& obj);
-		void print();
+		void print() const;
 
 		std::string getName() const;
 		std::string getLogin() const;

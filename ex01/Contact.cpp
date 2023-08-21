@@ -1,5 +1,5 @@
 #include "Contact.hpp"
-
+// TODO Check required information
 Contact::Contact() {}
 
 Contact::Contact(std::string name, std::string login, std::string number) {
@@ -13,11 +13,15 @@ Contact::~Contact() {}
 Contact::Contact(const Contact & obj) { *this = obj; }
 
 Contact& Contact::operator=(const Contact& obj) {
-	(void)obj;
-	return *this;
+	if (this == &obj)
+		return (*this);
+	this->_name = obj._name;
+	this->_login = obj._login;
+	this->_number = obj._number;
+	return (*this);
 }
 
-void Contact::print() {
+void Contact::print() const {
 	std::cout << "=============================================" << std::endl;
 	std::cout << "Name: " << this->_name << std::endl;
 	std::cout << "Login: " << this->_login << std::endl;

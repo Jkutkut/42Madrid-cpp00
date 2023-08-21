@@ -6,7 +6,7 @@
 /*   By: jre-gonz <jre-gonz@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 19:42:07 by jre-gonz          #+#    #+#             */
-/*   Updated: 2023/08/21 09:24:33 by jre-gonz         ###   ########.fr       */
+/*   Updated: 2023/08/21 11:10:31 by jre-gonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 
 class PhoneBook {
 public:
+	static const unsigned int	MAX_CONTACTS = 8;
+
 	PhoneBook();
 	~PhoneBook();
 	PhoneBook(const PhoneBook& obj);
@@ -25,9 +27,9 @@ public:
 
 	void addContact(const Contact contact);
 	void searchAndPrint(unsigned int index);
+	void print();
 
 private:
-	static const unsigned int	MAX_CONTACTS = 8;
 	unsigned int				contactCount;
 	Contact						contacts[MAX_CONTACTS];
 };
