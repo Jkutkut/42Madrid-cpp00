@@ -1,11 +1,19 @@
 #include "Contact.hpp"
-// TODO Check required information
+
 Contact::Contact() {}
 
-Contact::Contact(std::string name, std::string login, std::string number) {
-	this->_name = name;
-	this->_login = login;
-	this->_number = number;
+Contact::Contact(
+	std::string firstName,
+	std::string lastName,
+	std::string nickname,
+	std::string phoneNumber,
+	std::string darkestSecret
+) {
+	this->_firstName = firstName;
+	this->_lastName = lastName;
+	this->_nickname = nickname;
+	this->_phoneNumber = phoneNumber;
+	this->_darkestSecret = darkestSecret;
 }
 
 Contact::~Contact() {}
@@ -15,26 +23,34 @@ Contact::Contact(const Contact & obj) { *this = obj; }
 Contact& Contact::operator=(const Contact& obj) {
 	if (this == &obj)
 		return (*this);
-	this->_name = obj._name;
-	this->_login = obj._login;
-	this->_number = obj._number;
+	this->_firstName = obj._firstName;
+	this->_lastName = obj._lastName;
+	this->_nickname = obj._nickname;
+	this->_phoneNumber = obj._phoneNumber;
+	this->_darkestSecret = obj._darkestSecret;
 	return (*this);
 }
 
 void Contact::print() const {
 	std::cout << "=============================================" << std::endl;
-	std::cout << "Name: " << this->_name << std::endl;
-	std::cout << "Login: " << this->_login << std::endl;
-	std::cout << "Number: " << this->_number << std::endl;
+	std::cout << "| First Name: " << this->_firstName << " |" << std::endl; // TODO format
+	std::cout << "| Last Name: " << this->_lastName << " |" << std::endl; // TODO format
+	std::cout << "| Nickname: " << this->_nickname << " |" << std::endl; // TODO format
+	std::cout << "| Phone Number: " << this->_phoneNumber << " |" << std::endl; // TODO format
+	std::cout << "| Darkest Secret: " << this->_darkestSecret << " |" << std::endl; // TODO format
 	std::cout << "=============================================" << std::endl;
 }
 
 // Getters
-std::string Contact::getName() const { return this->_name; }
-std::string Contact::getLogin() const { return this->_login; }
-std::string Contact::getNumber() const { return this->_number; }
+std::string Contact::getFirstName() const { return (this->_firstName); }
+std::string Contact::getLastName() const { return (this->_lastName); }
+std::string Contact::getNickname() const { return (this->_nickname); }
+std::string Contact::getPhoneNumber() const { return (this->_phoneNumber); }
+std::string Contact::getDarkestSecret() const { return (this->_darkestSecret); }
 
 // Setters
-void Contact::setName(std::string name) { this->_name = name; }
-void Contact::setLogin(std::string login) { this->_login = login; }
-void Contact::setNumber(std::string number) { this->_number = number; }
+void Contact::setFirstName(const std::string firstName) { this->_firstName = firstName; }
+void Contact::setLastName(const std::string lastName) { this->_lastName = lastName; }
+void Contact::setNickname(const std::string nickname) { this->_nickname = nickname; }
+void Contact::setPhoneNumber(const std::string phoneNumber) { this->_phoneNumber = phoneNumber; }
+void Contact::setDarkestSecret(const std::string darkestSecret) { this->_darkestSecret = darkestSecret; }

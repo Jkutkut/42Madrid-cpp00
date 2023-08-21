@@ -6,7 +6,7 @@
 /*   By: jre-gonz <jre-gonz@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 08:45:29 by jre-gonz          #+#    #+#             */
-/*   Updated: 2023/08/21 17:29:15 by jre-gonz         ###   ########.fr       */
+/*   Updated: 2023/08/21 18:13:40 by jre-gonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ PhoneBook& PhoneBook::operator=(const PhoneBook& obj) {
 void PhoneBook::addContact(const Contact contact) {
 	if (this->contactCount >= MAX_CONTACTS)
 		std::cout << "PhoneBook is full. Replacing oldest." << std::endl;
-	std::clog << "Adding " << contact.getName() << " to PhoneBook...";
+	std::clog << "Adding " << contact.getFirstName() << " " << contact.getLastName() << " to PhoneBook...";
 	this->contacts[this->contactCount % MAX_CONTACTS] = contact;
 	std::clog << " [OK]" << std::endl;
 	this->contactCount++;
@@ -59,9 +59,11 @@ void PhoneBook::print() {
 	for (unsigned int i = 0; i < this->contactCount; i++) {
 		std::cout << "| " << i << " | ";
 		// TODO format name, login and number
-		std::cout << this->contacts[i].getName() << " | ";
-		std::cout << this->contacts[i].getLogin() << " | ";
-		std::cout << this->contacts[i].getNumber() << " |" << std::endl;
+		std::cout << this->contacts[i].getFirstName() << " | ";
+		std::cout << this->contacts[i].getLastName() << " | ";
+		std::cout << this->contacts[i].getNickname() << " | ";
+		std::cout << this->contacts[i].getPhoneNumber() << " | ";
+		std::cout << this->contacts[i].getDarkestSecret() << " |" << std::endl;
 	}
 	std::cout << "---------------------------------------------" << std::endl;
 }

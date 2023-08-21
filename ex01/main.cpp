@@ -6,7 +6,7 @@
 /*   By: jre-gonz <jre-gonz@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 19:55:29 by jre-gonz          #+#    #+#             */
-/*   Updated: 2023/08/21 17:26:32 by jre-gonz         ###   ########.fr       */
+/*   Updated: 2023/08/21 18:07:24 by jre-gonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,11 @@ Contact getContact() {
 
 	while (true) {
 		std::cout << "Please enter the information of the new contact:" << std::endl;
-		contact.setName(tui.getString("  Name: "));
-		contact.setLogin(tui.getString("  Login: "));
-		contact.setNumber(tui.getString("  Number: ")); // TODO validate
+		contact.setFirstName(tui.getString("  Fist name: "));
+		contact.setLastName(tui.getString("  Last name: "));
+		contact.setNickname(tui.getString("  Nickname: "));
+		contact.setPhoneNumber(tui.getString("  Phone number: ")); // TODO validate
+		contact.setDarkestSecret(tui.getString("  Darkest secret: "));
 		std::cout << "Contact information:" << std::endl;
 		contact.print();
 		if (tui.getString("Is this information correct? (*/n) ") != "n")
@@ -76,14 +78,6 @@ int	main(void) {
 	bool		running = true;
 
 	printTitle();
-	phoneBook.addContact(Contact("John", "john", "123456789"));
-	phoneBook.addContact(Contact("Jane", "jane", "987654321"));
-	phoneBook.addContact(Contact("Jack", "jack", "123123123"));
-	phoneBook.addContact(Contact("Jill", "jill", "321321321"));
-	phoneBook.addContact(Contact("James", "james", "456456456"));
-	phoneBook.addContact(Contact("Jenny", "jenny", "654654654"));
-	phoneBook.addContact(Contact("Jared", "jared", "789789789"));
-	phoneBook.addContact(Contact("Jasmine", "jasmine", "987987987")); // TODO remove
 
 	while (running) {
 		switch (stocmd(tui.getString("> "))) {
