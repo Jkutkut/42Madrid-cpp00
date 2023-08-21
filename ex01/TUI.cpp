@@ -25,9 +25,17 @@ TUI& TUI::getInstance() {
 	return *TUI::instance;
 }
 
+// -------------- STRING --------------
+
 static std::string trim(std::string& str) {
-	unsigned int start = 0;
-	unsigned int end = str.length() - 1;
+	unsigned int start;
+	unsigned int end;
+
+	if (str.length() == 0) {
+		return str;
+	}
+	start = 0;
+	end = str.length() - 1;
 	while (start < end && iswspace(str[start])) {
 		start++;
 	}
@@ -40,8 +48,20 @@ static std::string trim(std::string& str) {
 std::string TUI::getString(std::string question) {
 	std::string input;
 	std::cout << question;
-	std::cin >> input;
+	std::getline(std::cin, input);
 	return trim(input);
+}
+
+std::string TUI::getString(std::string question, std::string defaultValue) {
+	std::string input = getString(question);
+	if (input.length() == 0) {
+		return defaultValue;
+	}
+	return input;
+}
+
+std::string TUI::getString(std::string question, unsigned int minLength) {
+	return getString(question, minLength, __INT_MAX__);
 }
 
 std::string TUI::getString(std::string question, unsigned int minLength, unsigned int maxLength) {
@@ -53,6 +73,46 @@ std::string TUI::getString(std::string question, unsigned int minLength, unsigne
 		}
 		else if (input.length() > maxLength) {
 			std::cerr << "The response must be at most " << maxLength << " characters long." << std::endl;
+		}
+		else {
+			break;
+		}
+	}
+	return input;
+}
+
+static bool isSpanishPhone(std::string str) {
+	// XXX XXX XXX
+	// XXXXXXXXX
+	// +34 with or without spaces
+
+	unsigned int	i = 0;
+	unsigned int	j = 0;
+
+	std::clog << "isSpanishPhone: " << str << std::endl;
+	if (str.length() < 9)
+		return false;
+	std::clog << "isSpanishPhone: checking +34" << std::endl;
+	if (str.compare(0, 3, "+34") == 0)
+		i += 3;
+	while (j < 9 && i < str.length()) {
+		std::clog << "isSpanishPhone: checking digit" << std::endl;
+		if (str.compare(i, 1, " ") == 0)
+			i++;
+		while (i < str.length() && isdigit(str[i++]))
+			j++;
+	}
+	std::clog << "isSpanishPhone: " << (j == 9 && i == str.length()) << std::endl;
+	return (j == 9 && i == str.length());
+}
+
+std::string TUI::getSpanishPhone(std::string question) {
+	std::string input;
+	while (true) {
+		input = getString(question);
+		if (!isSpanishPhone(input)) {
+			std::cerr << "The response must be a valid Spanish phone number." << std::endl;
+			std::cerr << "  (\\+34)? ?\\d{3} ?\\d{3} ?\\d{3}" << std::endl;
 		}
 		else {
 			break;

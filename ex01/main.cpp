@@ -6,7 +6,7 @@
 /*   By: jre-gonz <jre-gonz@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 19:55:29 by jre-gonz          #+#    #+#             */
-/*   Updated: 2023/08/21 18:25:29 by jre-gonz         ###   ########.fr       */
+/*   Updated: 2023/08/21 19:36:07 by jre-gonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,11 @@ Contact getContact() {
 
 	while (true) {
 		std::cout << "Please enter the information of the new contact:" << std::endl;
-		contact.setFirstName(tui.getString("  Fist name: "));
-		contact.setLastName(tui.getString("  Last name: "));
-		contact.setNickname(tui.getString("  Nickname: "));
-		contact.setPhoneNumber(tui.getString("  Phone number: ")); // TODO validate
-		contact.setDarkestSecret(tui.getString("  Darkest secret: "));
+		contact.setFirstName(tui.getString("  Fist name: ", 2));
+		contact.setLastName(tui.getString("  Last name: ", 2));
+		contact.setNickname(tui.getString("  Nickname: ", 1));
+		contact.setPhoneNumber(tui.getSpanishPhone("  Phone number: "));
+		contact.setDarkestSecret(tui.getString("  Darkest secret: ", 5));
 		std::cout << "Contact information:" << std::endl;
 		contact.print();
 		if (tui.getString("Is this information correct? (*/n) ") != "n")

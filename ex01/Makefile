@@ -14,6 +14,7 @@ OBJS = $(SRCS:%.cpp=${BIN}/%.o)
 
 all: $(NAME)
 
+# TODO relink?
 $(NAME): $(OBJS)
 	@echo "Generating $@\c"
 	@$(CC) $(FLAGS) $(OBJS) -o $(NAME)
