@@ -6,7 +6,7 @@
 /*   By: jre-gonz <jre-gonz@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 19:55:29 by jre-gonz          #+#    #+#             */
-/*   Updated: 2023/08/21 19:36:07 by jre-gonz         ###   ########.fr       */
+/*   Updated: 2023/08/21 22:53:54 by jre-gonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,13 @@ typedef enum e_commands {
 	ADD,
 	SEARCH,
 	EXIT,
+	EMPTY,
 	UNKNOWN
 } t_commands;
 
 t_commands	stocmd(std::string command) {
+	if (command.length() == 0)
+		return (EMPTY);
 	command = toUpper(command);
 	if (command.compare("ADD") == 0)
 		return (ADD);
@@ -87,15 +90,18 @@ int	main(void) {
 	phoneBook.addContact(Contact("Jane", "Jones", "jajones", "987654321", "I'm Jane Jones"));
 	phoneBook.addContact(Contact("John", "Williams", "jwilliams", "123456789", "I'm John Williams"));
 	phoneBook.addContact(Contact("Jane", "Williams", "jawilliams", "987654321", "I'm Jane Williams"));
+	phoneBook.addContact(Contact("1234567890", "1234567890", "1234567890", "987654321", "I'm Jane Williams"));
 
 	while (running) {
 		switch (stocmd(tui.getString("> "))) {
+			case EMPTY:
+				break;
 			case ADD:
 				phoneBook.addContact(getContact());
 				std::cout << "Contact added" << std::endl;
 				break;
 			case SEARCH:
-				// if no contacts, print error
+				// TODO if no contacts, print error
 				phoneBook.print();
 				phoneBook.searchAndPrint((unsigned int) tui.getInt(
 					"Index: ", 0, phoneBook.getContactCount() - 1

@@ -82,17 +82,11 @@ std::string TUI::getString(std::string question, unsigned int minLength, unsigne
 }
 
 static bool isSpanishPhone(std::string str) {
-	// XXX XXX XXX
-	// XXXXXXXXX
-	// +34 with or without spaces
-
 	unsigned int	i = 0;
 	unsigned int	j = 0;
 
-	std::clog << "isSpanishPhone: " << str << std::endl;
 	if (str.length() < 9)
 		return false;
-	std::clog << "isSpanishPhone: checking +34" << std::endl;
 	if (str.compare(0, 3, "+34") == 0)
 		i += 3;
 	while (j < 9 && i < str.length()) {
@@ -102,7 +96,6 @@ static bool isSpanishPhone(std::string str) {
 		while (i < str.length() && isdigit(str[i++]))
 			j++;
 	}
-	std::clog << "isSpanishPhone: " << (j == 9 && i == str.length()) << std::endl;
 	return (j == 9 && i == str.length());
 }
 

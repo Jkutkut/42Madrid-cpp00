@@ -33,11 +33,12 @@ Contact& Contact::operator=(const Contact& obj) {
 
 void Contact::print() const {
 	std::cout << "=============================================" << std::endl;
-	std::cout << "| First Name: " << this->_firstName << " |" << std::endl; // TODO format
-	std::cout << "| Last Name: " << this->_lastName << " |" << std::endl; // TODO format
-	std::cout << "| Nickname: " << this->_nickname << " |" << std::endl; // TODO format
-	std::cout << "| Phone Number: " << this->_phoneNumber << " |" << std::endl; // TODO format
-	std::cout << "| Darkest Secret: " << this->_darkestSecret << " |" << std::endl; // TODO format
+	std::cout << "| Contact Info:" << std::endl;
+	std::cout << "| First Name: " << this->_firstName << std::endl;
+	std::cout << "| Last Name: " << this->_lastName << std::endl;
+	std::cout << "| Nickname: " << this->_nickname << std::endl;
+	std::cout << "| Phone Number: " << this->_phoneNumber << std::endl;
+	std::cout << "| Darkest Secret: " << this->_darkestSecret << std::endl;
 	std::cout << "=============================================" << std::endl;
 }
 

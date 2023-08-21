@@ -6,7 +6,7 @@
 /*   By: jre-gonz <jre-gonz@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 21:57:32 by jre-gonz          #+#    #+#             */
-/*   Updated: 2023/08/21 19:32:47 by jre-gonz         ###   ########.fr       */
+/*   Updated: 2023/08/21 19:48:03 by jre-gonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ public:
 
 protected:
 	static TUI* instance;
-	// static std::string trim(std::string& str);
-		// static bool hasAny(const std::string& set, char c);
 };
 
 #endif  // TUI_HPP_

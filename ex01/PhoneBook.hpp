@@ -6,7 +6,7 @@
 /*   By: jre-gonz <jre-gonz@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 19:42:07 by jre-gonz          #+#    #+#             */
-/*   Updated: 2023/08/21 18:22:42 by jre-gonz         ###   ########.fr       */
+/*   Updated: 2023/08/21 22:24:24 by jre-gonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #define PHONEBOOK_HPP_
 
 #include <iostream>
+# include <iomanip> // std::setw, std::setfill
 #include "Contact.hpp"
 
 class PhoneBook {

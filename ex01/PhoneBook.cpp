@@ -6,7 +6,7 @@
 /*   By: jre-gonz <jre-gonz@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 08:45:29 by jre-gonz          #+#    #+#             */
-/*   Updated: 2023/08/21 18:34:56 by jre-gonz         ###   ########.fr       */
+/*   Updated: 2023/08/21 22:42:08 by jre-gonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,18 +55,53 @@ void PhoneBook::searchAndPrint(unsigned int index) {
 	this->contacts[index].print();
 }
 
-void PhoneBook::print() {
-	std::cout << "---------------------------------------------" << std::endl;
-	for (unsigned int i = 0; i < this->getContactCount(); i++) {
-		std::cout << "| " << i << " | ";
-		// TODO format name, login and number
-		std::cout << this->contacts[i].getFirstName() << " | ";
-		std::cout << this->contacts[i].getLastName() << " | ";
-		std::cout << this->contacts[i].getNickname() << " | ";
-		std::cout << this->contacts[i].getPhoneNumber() << " | ";
-		std::cout << this->contacts[i].getDarkestSecret() << " |" << std::endl;
+void printField(std::string field) {
+	if (field.length() < 10) {
+		std::cout << std::setw(10) << std::setfill(' ');
+		std::cout << field;
 	}
-	std::cout << "---------------------------------------------" << std::endl;
+	else {
+		std::cout << field.substr(0, 9) << ".";
+	}
+}
+
+void printHeader() {
+	std::cout << "|";
+	printField("index");
+	std::cout << "|";
+	printField("first name");
+	std::cout << "|";
+	printField("last name");
+	std::cout << "|";
+	printField("nickname");
+	std::cout << "|";
+	printField("phone number");
+	std::cout << "|";
+	printField("darkest secret");
+	std::cout << "|" << std::endl;
+}
+
+void printRow(unsigned int row, Contact contact) {
+	std::cout << "|         " << row << "|";
+	printField(contact.getFirstName());
+	std::cout << "|";
+	printField(contact.getLastName());
+	std::cout << "|";
+	printField(contact.getNickname());
+	std::cout << "|";
+	printField(contact.getPhoneNumber());
+	std::cout << "|";
+	printField(contact.getDarkestSecret());
+	std::cout << "|" << std::endl;
+}
+
+void PhoneBook::print() {
+	printHeader();
+	std::cout << std::setw(6 * (10 + 1) + 1) << std::setfill('-') << "" << std::endl;
+	for (unsigned int i = 0; i < this->getContactCount(); i++) {
+		printRow(i, this->contacts[i]);
+	}
+	std::cout << std::setw(6 * (10 + 1) + 1) << std::setfill('-') << "" << std::endl;
 }
 
 unsigned int PhoneBook::getContactCount() const {
